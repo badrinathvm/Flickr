@@ -14,6 +14,10 @@
 		B8F9A5E921B2E9C80006DF1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8F9A5E721B2E9C80006DF1B /* LaunchScreen.storyboard */; };
 		B8F9A5F421B2E9C80006DF1B /* FlickrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9A5F321B2E9C80006DF1B /* FlickrTests.swift */; };
 		B8F9A5FF21B2E9C80006DF1B /* FlickrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9A5FE21B2E9C80006DF1B /* FlickrUITests.swift */; };
+		B8F9A61021B2EB1F0006DF1B /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9A60F21B2EB1F0006DF1B /* Photo.swift */; };
+		B8F9A61321B2EB3E0006DF1B /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9A61221B2EB3E0006DF1B /* Service.swift */; };
+		B8F9A61621B2EBFA0006DF1B /* Extensions+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9A61521B2EBFA0006DF1B /* Extensions+Additions.swift */; };
+		B8F9A61921B2ECB70006DF1B /* GenericDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9A61821B2ECB70006DF1B /* GenericDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		B8F9A5FA21B2E9C80006DF1B /* FlickrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlickrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F9A5FE21B2E9C80006DF1B /* FlickrUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrUITests.swift; sourceTree = "<group>"; };
 		B8F9A60021B2E9C80006DF1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8F9A60F21B2EB1F0006DF1B /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		B8F9A61221B2EB3E0006DF1B /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		B8F9A61521B2EBFA0006DF1B /* Extensions+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Additions.swift"; sourceTree = "<group>"; };
+		B8F9A61821B2ECB70006DF1B /* GenericDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +85,10 @@
 		B8F9A5D221B2E9C50006DF1B = {
 			isa = PBXGroup;
 			children = (
+				B8F9A61721B2ECA10006DF1B /* Utils */,
+				B8F9A61421B2EBDE0006DF1B /* Extensions */,
+				B8F9A61121B2EB310006DF1B /* Service */,
+				B8F9A60E21B2EB090006DF1B /* Model */,
 				B8F9A60D21B2E9F60006DF1B /* Controller */,
 				B8F9A5DD21B2E9C50006DF1B /* Flickr */,
 				B8F9A5F221B2E9C80006DF1B /* FlickrTests */,
@@ -131,6 +143,38 @@
 				B8F9A5E021B2E9C50006DF1B /* HomeViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		B8F9A60E21B2EB090006DF1B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B8F9A60F21B2EB1F0006DF1B /* Photo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B8F9A61121B2EB310006DF1B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				B8F9A61221B2EB3E0006DF1B /* Service.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		B8F9A61421B2EBDE0006DF1B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B8F9A61521B2EBFA0006DF1B /* Extensions+Additions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B8F9A61721B2ECA10006DF1B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B8F9A61821B2ECB70006DF1B /* GenericDataSource.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +308,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8F9A61621B2EBFA0006DF1B /* Extensions+Additions.swift in Sources */,
+				B8F9A61021B2EB1F0006DF1B /* Photo.swift in Sources */,
+				B8F9A61921B2ECB70006DF1B /* GenericDataSource.swift in Sources */,
+				B8F9A61321B2EB3E0006DF1B /* Service.swift in Sources */,
 				B8F9A5E121B2E9C50006DF1B /* HomeViewController.swift in Sources */,
 				B8F9A5DF21B2E9C50006DF1B /* AppDelegate.swift in Sources */,
 			);
