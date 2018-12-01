@@ -72,8 +72,8 @@ struct Photo: Codable {
         isPublic = try container.decode(Int.self, forKey: .isPublic)
         isFriend = try container.decode(Int.self, forKey: .isFriend)
         isFamily = try container.decode(Int.self, forKey: .isFamily)
-        urls = try container.decode(String.self, forKey: .urls)
-        height = try container.decode(String.self, forKey: .height)
-        width = try container.decode(String.self, forKey: .width)
+        urls = try container.decodeIfPresent(String.self, forKey: .urls) ?? ""
+        height = try container.decodeIfPresent(String.self, forKey: .height) ?? ""
+        width = try container.decodeIfPresent(String.self, forKey: .width) ?? ""
     }
 }
