@@ -51,6 +51,8 @@ class HomeViewController: UIViewController {
         setupSearchBar()
         
         displayPhotoList()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(searchResults), name: .search, object: nil)
     }
     
     private func setupTableView() {
@@ -98,6 +100,18 @@ class HomeViewController: UIViewController {
             self.activityIndicator.stopAnimating()
         })
     }
+    
+    @objc func searchResults(notification: Notification) {
+        guard let query = notification.userInfo?["query"] as? String else { return }
+        
+        photoListViewModel = PhotoListViewModel(service: Service(), query: query, completion: {
+            guard let viewModels = self.photoListViewModel?.photoViewModels else { return }
+            self.datasource = GenericDataSource.make(for: viewModels, reuseIdentifier: self.reuseIdentifier)
+            self.tableView.dataSource = self.datasource
+            self.tableView.reloadData()
+            self.activityIndicator.stopAnimating()
+        })
+    }
 }
 
 
@@ -124,17 +138,12 @@ extension GenericDataSource where Items == PhotoViewModel {
 extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard !searchText.isEmpty else {
+            print("Control here")
             displayPhotoList()
             return
         }
         
-        photoListViewModel = PhotoListViewModel(service: Service(), query: searchText, completion: {
-            guard let viewModels = self.photoListViewModel?.photoViewModels else { return }
-            self.datasource = GenericDataSource.make(for: viewModels, reuseIdentifier: self.reuseIdentifier)
-            self.tableView.dataSource = self.datasource
-            self.tableView.reloadData()
-            self.activityIndicator.stopAnimating()
-        })
-        
+        //post a notification to display the search results.
+        NotificationCenter.default.post(name: .search, object: nil, userInfo: ["query": searchText] )
     }
 }

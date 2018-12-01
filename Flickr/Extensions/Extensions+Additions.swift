@@ -82,4 +82,9 @@ extension UIImage {
     }
 }
 
+//MARK : Notitication Name
+extension Notification.Name {
+    static let search = Notification.Name(rawValue: "search")
+}
+
 
