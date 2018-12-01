@@ -19,6 +19,7 @@
 		B8F9A61621B2EBFA0006DF1B /* Extensions+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9A61521B2EBFA0006DF1B /* Extensions+Additions.swift */; };
 		B8F9A61921B2ECB70006DF1B /* GenericDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9A61821B2ECB70006DF1B /* GenericDataSource.swift */; };
 		B8F9A61C21B2F1040006DF1B /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9A61B21B2F1040006DF1B /* ImageCell.swift */; };
+		B8F9A61F21B2F9320006DF1B /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9A61E21B2F9320006DF1B /* PhotoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		B8F9A61521B2EBFA0006DF1B /* Extensions+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Additions.swift"; sourceTree = "<group>"; };
 		B8F9A61821B2ECB70006DF1B /* GenericDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericDataSource.swift; sourceTree = "<group>"; };
 		B8F9A61B21B2F1040006DF1B /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		B8F9A61E21B2F9320006DF1B /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 		B8F9A5D221B2E9C50006DF1B = {
 			isa = PBXGroup;
 			children = (
+				B8F9A61D21B2F9230006DF1B /* ViewModel */,
 				B8F9A61A21B2F0F50006DF1B /* View */,
 				B8F9A61721B2ECA10006DF1B /* Utils */,
 				B8F9A61421B2EBDE0006DF1B /* Extensions */,
@@ -186,6 +189,14 @@
 				B8F9A61B21B2F1040006DF1B /* ImageCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B8F9A61D21B2F9230006DF1B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B8F9A61E21B2F9320006DF1B /* PhotoViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,6 +335,7 @@
 				B8F9A61921B2ECB70006DF1B /* GenericDataSource.swift in Sources */,
 				B8F9A61321B2EB3E0006DF1B /* Service.swift in Sources */,
 				B8F9A5E121B2E9C50006DF1B /* HomeViewController.swift in Sources */,
+				B8F9A61F21B2F9320006DF1B /* PhotoViewModel.swift in Sources */,
 				B8F9A61C21B2F1040006DF1B /* ImageCell.swift in Sources */,
 				B8F9A5DF21B2E9C50006DF1B /* AppDelegate.swift in Sources */,
 			);

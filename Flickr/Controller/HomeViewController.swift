@@ -29,6 +29,15 @@ class HomeViewController: UIViewController {
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
     }()
+    
+    private lazy var searchBar: UISearchBar = { [unowned self] in
+        let searchBarView = UISearchBar()
+        searchBarView.translatesAutoresizingMaskIntoConstraints = false
+        searchBarView.delegate = self
+        return searchBarView
+    }()
+    
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +47,8 @@ class HomeViewController: UIViewController {
         setupTableView()
         
         setupActivityIndicator()
+        
+        setupSearchBar()
         
         displayPhotoList()
     }
@@ -70,6 +81,14 @@ class HomeViewController: UIViewController {
         ])
     }
     
+    private func setupSearchBar() {
+        self.view.addSubview(searchBar)
+        
+        navigationItem.titleView = searchBar
+        searchBar.showsScopeBar = false // you can show/hide this dependant on your layout
+        searchBar.placeholder = "Search"
+    }
+    
     private func displayPhotoList() {
         photoListViewModel = PhotoListViewModel(service: Service(), completion: {
             guard let viewModels = self.photoListViewModel?.photoViewModels else { return }
@@ -99,5 +118,23 @@ extension GenericDataSource where Items == PhotoViewModel {
             _cell.mainImage.loadImage(for: viewModel.photo.server, id: viewModel.photo.id, secret: viewModel.photo.secret)
         }
         return dataSource
+    }
+}
+
+extension HomeViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            displayPhotoList()
+            return
+        }
+        
+        photoListViewModel = PhotoListViewModel(service: Service(), query: searchText, completion: {
+            guard let viewModels = self.photoListViewModel?.photoViewModels else { return }
+            self.datasource = GenericDataSource.make(for: viewModels, reuseIdentifier: self.reuseIdentifier)
+            self.tableView.dataSource = self.datasource
+            self.tableView.reloadData()
+            self.activityIndicator.stopAnimating()
+        })
+        
     }
 }
