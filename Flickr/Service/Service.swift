@@ -22,7 +22,7 @@ class Service {
         
         let apiKey = "675894853ae8ec6c242fa4c077bcf4a0"
         endPoint = query.count == 0 ? "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&per_page=500&api_key=\(apiKey)&format=json&nojsoncallback=true" :
-        "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=675894853ae8ec6c242fa4c077bcf4a0&text=\(query)&extras=url_s&format=json&nojsoncallback=1"
+        "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=675894853ae8ec6c242fa4c077bcf4a0&text=\(query)&per_page=500&extras=url_s&format=json&nojsoncallback=1"
         
         guard let url = URL.init(string: endPoint!) else { return }
         
