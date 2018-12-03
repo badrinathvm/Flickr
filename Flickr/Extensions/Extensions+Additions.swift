@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 //MARK : for laying out properly on landscape mode.
 extension UIView {
@@ -24,13 +25,8 @@ fileprivate let imageCache = NSCache<AnyObject,AnyObject>()
 extension UIImageView {
     
     //sample url:  https://farm6.staticflickr.com/5623/30145975463_02b8452545.jpg
-    
     func loadImage(for server: String, id:String, secret:String, sizeParam: Bool = false) {
-        
         let url =  "https://farm6.staticflickr.com/" + "\(server)/" + "\(id)_\(secret).jpg"
-        
-        print(url)
-        
         guard let endPoint = URL.init(string: url) else { return }
         
         if let imageToCache = imageCache.object(forKey: endPoint as AnyObject) as? UIImage  {
@@ -48,10 +44,27 @@ extension UIImageView {
                     }
                     imageCache.setObject(imageToCache, forKey: url as AnyObject)
                     self.image = !sizeParam ? imageToCache.scaleImageToSize(newSize: CGSize(width: 800, height: 400)) : imageToCache
+                    
+                    //store it in Core Data
+                    self.saveToCoreData(imageData: imageData)
                 }
             }
         }
         task.resume()
+    }
+    
+    
+    func saveToCoreData(imageData: Data) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return  }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        guard let imageEntity = NSEntityDescription.entity(forEntityName: "Images", in: managedContext) else  { return }
+        let options = NSManagedObject(entity: imageEntity, insertInto: managedContext)
+        options.setValue(imageData, forKey: "offline")
+        do {
+            try managedContext.save()
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
 }
 
@@ -87,4 +100,56 @@ extension Notification.Name {
     static let search = Notification.Name(rawValue: "search")
 }
 
-
+extension UIViewController {
+    
+    func readFromCoreData() -> [Data] {
+        var dataArray = [Data]()
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return [] }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Images")
+        do{
+            let fetchedResults = try managedContext.fetch(fetchRequest) as! [NSManagedObject]
+            for data in fetchedResults {
+                guard let imageData = data.value(forKey: "offline") as? Data else  { return [] }
+                dataArray.append(imageData)
+            }
+        }catch let error {
+            print(error.localizedDescription)
+        }
+        return dataArray
+    }
+    
+    func clearCoreData() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Images")
+        do{
+            let fetchedResults = try managedContext.fetch(fetchRequest) as! [NSManagedObject]
+            for data in fetchedResults {
+                managedContext.delete(data)
+                try managedContext.save()
+            }
+        }catch let error {
+            print(error.localizedDescription)
+        }
+        print("Existing Core Data Images removed successful")
+    }
+    
+    
+    func displayAlert(title : String = "Flickr" , message:String = "Not displaying Images? Try again later!!", _ done: @escaping (Bool)->()) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            switch action.style {
+            case .default:
+                print("default")
+                done(true)
+            case .cancel:
+                  done(true)
+            case .destructive:
+                  done(true)
+            }
+        }))
+        self.present(alertController, animated: true, completion: nil)
+    }
+}

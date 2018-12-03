@@ -26,14 +26,13 @@ class PhotoListViewModel {
     
     private func fetchData(query: String) {
         service.fetchPhotoData(query: query) { (photos) in
-            if case .success(let photos) = photos {
-                self.photoViewModels = photos.map(PhotoViewModel.init)
-                self.completion(true)
-            }
-            
-            if case .failure(let error) = photos {
-                print("Error \(error)")
-                self.completion(false)
+            switch photos {
+                case .success(let photos) :
+                        self.photoViewModels = photos.map(PhotoViewModel.init)
+                        self.completion(true)
+                case .failure(let error) :
+                        print("Error \(error)")
+                        self.completion(false)
             }
         }
     }

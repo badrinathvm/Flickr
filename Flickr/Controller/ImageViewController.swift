@@ -14,11 +14,13 @@ class ImageViewController: UIViewController {
     private var viewModel:PhotoViewModel?
     private var imageData: Data?
     
+    //This initilazer to collect view model to render the image.
     init(viewModel: PhotoViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
+    //This initilazer is to collect imageData during offline mode.
     init?(imageData: Data) {
          self.imageData = imageData
          super.init(nibName: nil, bundle: nil)
@@ -30,7 +32,7 @@ class ImageViewController: UIViewController {
         view.clipsToBounds = true
         view.contentMode = .scaleAspectFill
         return view
-        }()
+    }()
     
     // this is required to align the image view in landscape mode avoiding to re draw it again.
     private lazy var topImageContainer:UIView = { [unowned self] in
@@ -57,7 +59,6 @@ class ImageViewController: UIViewController {
         self.view.addSubview(topImageContainer)
         topImageContainer.addSubview(mainImage)
         
-
         if Reachability.isConnectedToNetwork() {
              guard let photo = viewModel?.photo else { return }
              self.mainImage.loadImage(for: photo.server, id: photo.id, secret: photo.secret, sizeParam: true)
@@ -66,7 +67,7 @@ class ImageViewController: UIViewController {
             self.mainImage.image = UIImage(data: imageData)
         }
        
-        
+        //Set constraints for image Container to handle display of image both in landscape/portrait modes.
         NSLayoutConstraint.activate([
             topImageContainer.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
             topImageContainer.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),

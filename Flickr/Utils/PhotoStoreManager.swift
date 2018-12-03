@@ -7,3 +7,11 @@
 //
 
 import Foundation
+import UIKit
+
+class PhotoStoreManager {
+    
+    static let shared = PhotoStoreManager()
+    
+    var photoList = [Data]()
+}
