@@ -29,9 +29,7 @@ class ImageCell: UITableViewCell {
     }()
     
     private func setup() {
-        
         self.contentView.addSubview(mainImage)
-        
         NSLayoutConstraint.activate([
             self.mainImage.topAnchor.constraint(equalTo: topAnchor,constant: 5),
             self.mainImage.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 5),

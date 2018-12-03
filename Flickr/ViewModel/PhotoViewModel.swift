@@ -38,7 +38,6 @@ class PhotoListViewModel {
     }
 }
 
-
 class PhotoViewModel {
     var photo:Photo
     

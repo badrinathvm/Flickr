@@ -16,8 +16,6 @@ class HomeViewController: UIViewController {
     private var datasource:GenericDataSource<PhotoViewModel>?
     private var photoDataSource: GenericDataSource<Data>?
     
-    var photoManagedObject = [NSManagedObject]()
-    
     private lazy var tableView:UITableView = { [unowned self] in
           let table = UITableView()
           table.translatesAutoresizingMaskIntoConstraints = false
@@ -213,7 +211,7 @@ extension GenericDataSource where Items == Data {
 
 //MARK: This is for the search delegates methods for firing a call to flickr api based on the query submitted for eg: bus
 // if search query is cleared , it resets the table view to original data.
-// dismiss of keyboard on dragging, press of x icon on search bar etc..
+// dismiss of keyboard on dragging, press of `x` icon on search bar etc..
 
 extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

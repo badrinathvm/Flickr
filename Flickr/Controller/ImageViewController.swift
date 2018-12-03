@@ -54,7 +54,7 @@ class ImageViewController: UIViewController {
         setupImageView()
     }
     
-    func setupImageView() {
+    private func setupImageView() {
         
         self.view.addSubview(topImageContainer)
         topImageContainer.addSubview(mainImage)
