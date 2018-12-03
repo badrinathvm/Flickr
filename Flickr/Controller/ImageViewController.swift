@@ -69,10 +69,10 @@ class ImageViewController: UIViewController {
        
         //Set constraints for image Container to handle display of image both in landscape/portrait modes.
         NSLayoutConstraint.activate([
-            topImageContainer.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
-            topImageContainer.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            topImageContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            topImageContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
+            topImageContainer.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.5),
+            topImageContainer.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            topImageContainer.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            topImageContainer.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -10)
         ])
         
         //Set up constraints for imageview
