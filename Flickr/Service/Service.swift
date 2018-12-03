@@ -19,7 +19,9 @@ class Service {
     
     func fetchPhotoData(query: String = "" , completion :  @escaping (Result<[Photo]>) -> ()) {
         print(query.count)
-        endPoint = query.count == 0 ? "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&per_page=500&api_key=675894853ae8ec6c242fa4c077bcf4a0&format=json&nojsoncallback=true" :
+        
+        let apiKey = "675894853ae8ec6c242fa4c077bcf4a0"
+        endPoint = query.count == 0 ? "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&per_page=500&api_key=\(apiKey)&format=json&nojsoncallback=true" :
         "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=675894853ae8ec6c242fa4c077bcf4a0&text=\(query)&extras=url_s&format=json&nojsoncallback=1"
         
         guard let url = URL.init(string: endPoint!) else { return }
@@ -30,7 +32,7 @@ class Service {
             DispatchQueue.main.async {
                 if let error = error {
                     completion(.failure(error))
-                }else if let jsonData = data {
+                } else if let jsonData = data {
                     do {
                         let decoder = JSONDecoder()
                         let photos = try decoder.decode(PhotoData.self, from: jsonData).photos.photo
@@ -38,6 +40,9 @@ class Service {
                     }catch let error {
                         completion(.failure(error))
                     }
+                }else {
+                    let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey : "Data was not retrieved from request"]) as Error
+                    completion(.failure(error))
                 }
             }
         }

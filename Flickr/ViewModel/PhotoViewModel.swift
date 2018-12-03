@@ -12,7 +12,7 @@ class PhotoListViewModel {
     
     private(set) var photoViewModels = [PhotoViewModel]()
     
-    typealias Handler = () -> ()
+    typealias Handler = (Bool) -> ()
     var service:Service
     var completion:Handler
     var query:String?
@@ -28,7 +28,12 @@ class PhotoListViewModel {
         service.fetchPhotoData(query: query) { (photos) in
             if case .success(let photos) = photos {
                 self.photoViewModels = photos.map(PhotoViewModel.init)
-                self.completion()
+                self.completion(true)
+            }
+            
+            if case .failure(let error) = photos {
+                print("Error \(error)")
+                self.completion(false)
             }
         }
     }
