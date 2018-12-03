@@ -22,7 +22,6 @@
 		B8F9A61F21B2F9320006DF1B /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9A61E21B2F9320006DF1B /* PhotoViewModel.swift */; };
 		B8F9A62121B302FF0006DF1B /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9A62021B302FF0006DF1B /* ImageViewController.swift */; };
 		B8F9A62321B30BCB0006DF1B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9A62221B30BCB0006DF1B /* Reachability.swift */; };
-		B8F9A66521B336940006DF1B /* PhotoStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9A66421B336940006DF1B /* PhotoStoreManager.swift */; };
 		B8F9A66821B4A7A80006DF1B /* ImageModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B8F9A66621B4A7A80006DF1B /* ImageModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +64,6 @@
 		B8F9A61E21B2F9320006DF1B /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
 		B8F9A62021B302FF0006DF1B /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		B8F9A62221B30BCB0006DF1B /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		B8F9A66421B336940006DF1B /* PhotoStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoStoreManager.swift; sourceTree = "<group>"; };
 		B8F9A66721B4A7A80006DF1B /* ImageModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ImageModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -190,7 +188,6 @@
 			children = (
 				B8F9A61821B2ECB70006DF1B /* GenericDataSource.swift */,
 				B8F9A62221B30BCB0006DF1B /* Reachability.swift */,
-				B8F9A66421B336940006DF1B /* PhotoStoreManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -345,7 +342,6 @@
 				B8F9A61621B2EBFA0006DF1B /* Extensions+Additions.swift in Sources */,
 				B8F9A62121B302FF0006DF1B /* ImageViewController.swift in Sources */,
 				B8F9A61021B2EB1F0006DF1B /* Photo.swift in Sources */,
-				B8F9A66521B336940006DF1B /* PhotoStoreManager.swift in Sources */,
 				B8F9A61921B2ECB70006DF1B /* GenericDataSource.swift in Sources */,
 				B8F9A61321B2EB3E0006DF1B /* Service.swift in Sources */,
 				B8F9A5E121B2E9C50006DF1B /* HomeViewController.swift in Sources */,
